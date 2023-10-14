@@ -9,7 +9,6 @@
     <thead>
         <tr>
             <th>Id</th>
-            <th>Stock</th>
             <th>Name</th>
             <th>Price</th>
         </tr>
@@ -19,10 +18,14 @@
         {
             <tr>
                 <td>@item.Id</td>
-                <td>@item.Stock</td>
                 <td>@item.Name</td>
                 <td>@item.Price</td>
-                <td><a asp-controller="Products" asp-action="Remove" asp-route-id="@item.Id">Sil</a></td>
+                <td>@item.Stock</td>
+                <td>
+                    <a asp-controller="Products" asp-action="Remove" asp-route-id="@item.Id">Sil</a>
+
+
+                </td>
             </tr>
         }
     </tbody>
