@@ -1,16 +1,21 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
 }
 @model List<Product>
 
+@if(TempData["status"]!= null)
+{
+    <div class="alert alert-primary" role="alert">@TempData["status"]</div> 
+}
 <h1>Ürünler</h1>
+<a asp-controller="products" asp-action="Add">Ürün Ekle</a>
 <table class="table">
     <thead>
         <tr>
             <th>Id</th>
             <th>Name</th>
             <th>Price</th>
+            <th>Stock</th>
         </tr>
     </thead>
     <tbody>
@@ -23,10 +28,12 @@
                 <td>@item.Stock</td>
                 <td>
                     <a asp-controller="Products" asp-action="Remove" asp-route-id="@item.Id">Sil</a>
-
-
                 </td>
+                    <td>
+                    <a asp-controller="Products" asp-action="Update" asp-route-id="@item.Id">Güncelle</a>
+                    </td>
             </tr>
         }
     </tbody>
 </table>
+

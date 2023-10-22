@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using MyApplication.Models;
+
 namespace MyApplication
 {
     public class Program
@@ -8,6 +11,12 @@ namespace MyApplication
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+
+            builder.Services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("SqlCon"));
+            });
 
             var app = builder.Build();
 
