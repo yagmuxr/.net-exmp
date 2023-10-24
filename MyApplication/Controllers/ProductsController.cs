@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyApplication.Helpers;
 using MyApplication.Models;
 
 namespace MyApplication.Controllers
@@ -8,12 +9,14 @@ namespace MyApplication.Controllers
     {
         private AppDbContext _context;
         private ProductRepository productRepository;
+        private IHelper _helper;
 
-        public ProductsController(AppDbContext context)
+        public ProductsController(AppDbContext context, IHelper helper)
         {
             productRepository = new ProductRepository();
 
             _context = context;
+            _helper = helper;
 
             //if (!_context.Products.Any())
             //{
@@ -46,6 +49,8 @@ namespace MyApplication.Controllers
         }
         public IActionResult Index()
         {
+
+
             var products = _context.Products.ToList();
             return View(products);
         }
@@ -66,9 +71,10 @@ namespace MyApplication.Controllers
         }
 
         [HttpPost]
-        public IActionResult Update(Product product)
+        public IActionResult Update(Product updateProduct, int productId)
         {
-                _context.Products.Update(product);
+            updateProduct.Id = productId;
+                _context.Products.Update(updateProduct);
                 _context.SaveChanges();
             TempData["status"] = "Başarıyla güncellendi"; //cookie üzerinden taşır!
             return RedirectToAction("Index");

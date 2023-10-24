@@ -6,7 +6,24 @@
 
 <h1>Ürün Ekleme</h1>
 <form asp-controller="Products" asp-action="SaveProduct" method="post">
-    <label>Ürün İsmi:</label>
+
+    <div class="mb-3">
+        <label for="Name" class="form-label">Ürün İsmi:</label>
+        <input type="text" class="form-control" asp-for="Name">
+    </div>
+    <div class="mb-3">
+        <label for="Price" class="form-label">Ürün Fiyatı:</label>
+        <input type="text" class="form-control" asp-for="Price">
+    </div>
+    <div class="mb-3">
+        <label for="Stock" class="form-label">Ürün Stoğu:</label>
+        <input type="text" class="form-control" asp-for="Stock">
+    </div>
+    <div class="mb-3">
+        <label for="Color" class="form-label">Ürün Rengi:</label>
+        <input type="text" class="form-control" asp-for="Color">
+    </div>
+    @*<label>Ürün İsmi:</label>
     <input type="text" asp-for="Name"/>
     <br />
     <label>Ürün Fiyatı:</label>
@@ -17,7 +34,12 @@
     <br />
     <label>Ürün Rengi:</label>
     <input type="text" asp-for="Color"/>
-    <br />
-    <button type="Submit">Kaydet</button>
+    <br />*@
+    <div class="form-check">
+        <input class="form-check-input" asp-for="IsPublish">
+        <label class="form-check-label" for="flexCheckDefault">
+            Yayınlansın mı?
+        </label>
+    <button class="btn btn-primary" type="Submit">Kaydet</button>
 </form>
 

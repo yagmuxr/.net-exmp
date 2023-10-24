@@ -5,8 +5,8 @@
 
 @model Product 
 <h1>Ürün Güncelleme</h1>
-<form asp-controller="Products" asp-action="Update" method="get">
-    <input type="hidden" asp-for="Id"/>
+<form asp-controller="Products" asp-action="Update" asp-route-updateId="@Model.Id" method="post">
+    
     <label>Ürün İsmi:</label>
     <input type="text" asp-for="Name" />
     <br />

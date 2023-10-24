@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using MyApplication.Helpers;
 using MyApplication.Models;
 
 namespace MyApplication
@@ -17,6 +18,10 @@ namespace MyApplication
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("SqlCon"));
             });
+
+            /*builder.Services.AddSingleton<IHelper, Helper>()*/;
+            builder.Services.AddScoped<IHelper, Helper>();
+            //builder.Services.AddScoped<Helper>();
 
             var app = builder.Build();
 
