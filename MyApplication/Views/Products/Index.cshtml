@@ -16,6 +16,10 @@
             <th>Name</th>
             <th>Price</th>
             <th>Stock</th>
+            <th>Color</th>
+            <th>Yayınlansın mı?</th>
+            <th>Expire Date</th>
+            <th>Description</th>
         </tr>
     </thead>
     <tbody>
@@ -26,6 +30,26 @@
                 <td>@item.Name</td>
                 <td>@item.Price</td>
                 <td>@item.Stock</td>
+                <td>@item.Color</td>
+                <td>@item.IsPublish</td>
+                <td>@item.Expire</td>
+                <td>if(@item.Description.Length > 20)
+                    @item.Description.Substring(0,20)
+                    else
+                    @item.Description
+                </td>
+                <td>
+                    @*@if(@item.IsPublish)
+                    {
+                        <text>Evet</text>
+                    }
+                    else
+                    {
+                        <text>Hayır</text>
+                    }*@
+                    @(item.IsPublish ? "Evet" : "Hayır")
+                </td>
+                <td>@item.Expire</td>
                 <td>
                     <a asp-controller="Products" asp-action="Remove" asp-route-id="@item.Id">Sil</a>
                 </td>

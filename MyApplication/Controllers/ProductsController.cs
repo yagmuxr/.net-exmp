@@ -9,17 +9,17 @@ namespace MyApplication.Controllers
     {
         private AppDbContext _context;
         private ProductRepository productRepository;
-        private IHelper _helper;
+        //private IHelper _helper;
 
         public ProductsController(AppDbContext context, IHelper helper)
         {
             productRepository = new ProductRepository();
 
             _context = context;
-            _helper = helper;
+            //_helper = helper;
 
-            //if (!_context.Products.Any())
-            //{
+            ////if (!_context.Products.Any())
+            ////{
             //    _context.Products.Add(new Product()
             //    {
             //        Name = "Kalem",
@@ -81,9 +81,16 @@ namespace MyApplication.Controllers
             
         }
 
-
+        [HttpGet]
         public IActionResult Add()
         {
+
+            ViewBag.Expire = new Dictionary<string, int>() {
+                {"1 Ay", 1 },
+                {"3 Ay", 2 },
+                {"6 Ay", 6 },
+                {"12 Ay", 12 }
+                };
             return View();
         }
         [HttpPost] //Requestin body kısmında gönderilir post ile!
