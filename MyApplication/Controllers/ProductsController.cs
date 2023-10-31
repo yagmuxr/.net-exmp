@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MyApplication.Helpers;
 using MyApplication.Models;
 
@@ -68,6 +69,22 @@ namespace MyApplication.Controllers
         {
             var product = _context.Products.Find(id);
             return View(product);
+            ViewBag.ExpireDate = product.Expire; 
+            ViewBag.Expire = new Dictionary<string, int>() {
+                {"1 Ay", 1 },
+                {"3 Ay", 2 },
+                {"6 Ay", 6 },
+                {"12 Ay", 12 }
+                };
+
+            ViewBag.ColorSelect = new SelectList(new List<Color_SelectList>()
+            {
+                new() { Data = "Mavi" ,Value = "Mavi"},
+                new() {Data = "Kırmızı" , Value="Kırmızı"},
+                new() {Data = ""}
+
+            }, "Value", "Data", product.Color);
+            
         }
 
         [HttpPost]
@@ -91,6 +108,14 @@ namespace MyApplication.Controllers
                 {"6 Ay", 6 },
                 {"12 Ay", 12 }
                 };
+
+            ViewBag.ColorSelect = new SelectList(new List<Color_SelectList>()
+            {
+                new() { Data = "Mavi" ,Value = "Mavi"},
+                new() {Data = "Kırmızı" , Value="Kırmızı"},
+                new() {Data = ""}
+
+            }, "Value", "Data");
             return View();
         }
         [HttpPost] //Requestin body kısmında gönderilir post ile!

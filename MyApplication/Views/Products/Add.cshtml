@@ -1,12 +1,10 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Add";
 }
 @model Product
 
 <h1>Ürün Ekleme</h1>
 <form asp-controller="Products" asp-action="SaveProduct" method="post">
-
     <div class="mb-3">
         <label asp-for="Name" class="form-label">Ürün İsmi:</label>
         <input type="text" class="form-control" asp-for="Name">
@@ -17,44 +15,38 @@
     </div>
     <div class="mb-3">
         <label asp-for="Stock" class="form-label">Ürün Stoğu:</label>
-        <input type="text" class="form-control" asp-for="Stock">
+        <input type="text" class "form-control" asp-for="Stock">
     </div>
     <div class="mb-3">
         <label asp-for="Color" class="form-label">Ürün Rengi:</label>
-        <input type="text" class="form-control" asp-for="Color">
+        <select class="form-select" asp-for="Color" asp-items="@ViewBag.ColorSelect">
+            <option value="">Renk Seçiniz:</option>
+        </select>
     </div>
-    @*<label>Ürün İsmi:</label>
-    <input type="text" asp-for="Name"/>
-    <br />
-    <label>Ürün Fiyatı:</label>
-    <input type="text" asp-for="Price"/>
-    <br />
-    <label>Ürün Stoğu:</label>
-    <input type="text" asp-for="Stock"/>
-    <br />
-    <label>Ürün Rengi:</label>
-    <input type="text" asp-for="Color"/>
-    <br />*@
     <div class="form-check">
         <input class="form-check-input" asp-for="IsPublish">
         <label class="form-check-label" asp-for="IsPublish">
             Yayınlansın mı?
         </label>
-        <div class="mb-3">
+    </div>
+    <div class="mb-3">
         @foreach (var item in ViewBag.Expire as Dictionary<string, int>)
         {
             <div class="form-check">
                 <input class="form-check-input" type="radio" id="@(item.Value)Expire" asp-for="Expire" value="@item.Value">
-                    <label class="form-check-label" asp-for="Expire" for="@(item.Value)Expire">
+                <label class="form-check-label" asp-for="Expire" for="@(item.Value)Expire">
                     @item.Key
                 </label>
             </div>
-            }
-        </div>
-        <div class="form-floating">
-            <textarea asp-for="Description" class="form-control" placeholder="Ürün Açıklama" id="floatingTextarea"></textarea>
-        </div>
-        <br />
-    <button class="btn btn-primary" type="Submit">Kaydet</button>
+        }
+    </div>
+    <div class="form-floating">
+        <textarea asp-for="Description" class="form-control" placeholder="Ürün Açıklama" id="floatingTextarea"></textarea>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Publish" class="form-label">Ürün Yayınlanma Tarihi:</label>
+        <input class="form-control" asp-for="Publish">
+    </div>
+    <br />
+    <button class="btn btn-primary" type="submit">Kaydet</button>
 </form>
-
